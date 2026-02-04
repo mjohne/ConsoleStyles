@@ -46,7 +46,28 @@ public class ConsoleStylesTest {
             allTestsPassed = false;
         }
         
-        // Test 7: ConsoleStyles kann nicht instanziiert werden
+        // Test 7: format() mit null Text
+        String nullText = ConsoleStyles.format(null, ConsoleStyles.RED);
+        if (!nullText.equals("\u001B[31m\u001B[0m")) {
+            System.err.println("FEHLER: format() mit null Text funktioniert nicht korrekt");
+            allTestsPassed = false;
+        }
+        
+        // Test 8: format() mit leerem Text
+        String emptyText = ConsoleStyles.format("", ConsoleStyles.RED);
+        if (!emptyText.equals("\u001B[31m\u001B[0m")) {
+            System.err.println("FEHLER: format() mit leerem Text funktioniert nicht korrekt");
+            allTestsPassed = false;
+        }
+        
+        // Test 9: format() mit null Stil
+        String nullStyle = ConsoleStyles.format("Test", (String) null);
+        if (!nullStyle.equals("Test\u001B[0m")) {
+            System.err.println("FEHLER: format() mit null Stil funktioniert nicht korrekt");
+            allTestsPassed = false;
+        }
+        
+        // Test 10: ConsoleStyles kann nicht instanziiert werden
         try {
             // Dieser Code sollte nicht funktionieren
             java.lang.reflect.Constructor<?> constructor = ConsoleStyles.class.getDeclaredConstructor();

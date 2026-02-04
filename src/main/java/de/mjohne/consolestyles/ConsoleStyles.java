@@ -80,9 +80,16 @@ public class ConsoleStyles {
      * @return Der formatierte Text mit ANSI-Escape-Sequenzen
      */
     public static String format(String text, String... styles) {
+        if (text == null) {
+            text = "";
+        }
         StringBuilder sb = new StringBuilder();
-        for (String style : styles) {
-            sb.append(style);
+        if (styles != null) {
+            for (String style : styles) {
+                if (style != null) {
+                    sb.append(style);
+                }
+            }
         }
         sb.append(text);
         sb.append(RESET);
