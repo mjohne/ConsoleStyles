@@ -262,12 +262,20 @@ public class ConsoleStyles {
         // Windows 10+ unterstützt ANSI in der Konsole
         if (os.contains("win")) {
             String osVersion = System.getProperty("os.version");
-            try {
-                double version = Double.parseDouble(osVersion);
-                return version >= 10.0;
-            } catch (NumberFormatException e) {
-                return false;
+            if (osVersion != null) {
+                // Windows-Version startet mit "10." oder höher (z.B. "10.0", "11.0")
+                String[] versionParts = osVersion.split("\\.");
+                if (versionParts.length > 0) {
+                    try {
+                        int majorVersion = Integer.parseInt(versionParts[0]);
+                        return majorVersion >= 10;
+                    } catch (NumberFormatException e) {
+                        // Bei Parsing-Fehler konservativ false zurückgeben
+                        return false;
+                    }
+                }
             }
+            return false;
         }
         
         // Unix-basierte Systeme unterstützen ANSI in der Regel
