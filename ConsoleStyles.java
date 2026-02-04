@@ -7,7 +7,7 @@
  * @version 1.0
  */
 
-public class ConsoleStyles {
+public final class ConsoleStyles {
   
     // ANSI escape sequence prefix
     private static final String ESCAPE = "\u001B[";
@@ -182,7 +182,7 @@ public class ConsoleStyles {
      */
     public static final String BG_WHITE = ESCAPE + "47m";
     
-    // ==================== Light BACKGROUND COLORS ====================
+    // ==================== LIGHT BACKGROUND COLORS ====================
     /**
      * Background color: Light Black (Gray)
      */
@@ -221,4 +221,9 @@ public class ConsoleStyles {
     /**
      * Background color: Light White
      */
-    public static final String BG_BRIGHT_WHITE = ESCAPE + "107m";}
+    public static final String BG_BRIGHT_WHITE = ESCAPE + "107m";
+
+    private ConsoleStyles() {
+        // Prevent instantiation
+    }
+}
